@@ -18,6 +18,17 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.cardPoke {
+  background-color: rgb(199, 191, 191);
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #646cffaa;
+  border: 3px solid #646cffaa;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,28 +1,33 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import Formulario from './components/Formulario';
-import PokemonInfo from './components/PokemonInfo';
+import Formulario from './components/FormularioPokemon';
+import PokemonInfo from './components/InfoPokemon';
 
 
 function App() {
-    const [nombre, setNombre] = useState('')
-    const [pokemon, setPokemon] = useState(null)
-    const [error, setError] = useState(null)
+    const [nombre, setNombre] = useState('');
+    const [pokemon, setPokemon] = useState(null);
+    const [error, setError] = useState(null);
     
 const getPokemon = async (nombre) => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
-    try {
-      if(!res.ok) throw new Error('Error al traer los datos')
-      const data = await res.json()
-      setPokemon(data)
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre.toLowerCase()}`)
+    if(!res.ok) throw new Error('Pokemon no encontrado')
+    const data = await res.json()
+    setPokemon(data);
+    setError(err.message);
+
     } catch (err) {
       console.log(err)
     }
-  }
+  };
  
   useEffect(() => {
     if(nombre.trim() !=='') {
   getPokemon(nombre.toLowerCase());
+    } else {
+      setPokemon(null);
+      setError(null);
     }
   }, [nombre]); 
     
